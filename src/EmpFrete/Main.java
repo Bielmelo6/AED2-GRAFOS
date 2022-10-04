@@ -77,11 +77,11 @@ public class Main {
         grafo.addAresta(642.7, "Teresina", "Petrolina");
         grafo.addAresta(395.9, "Feira de Santana", "Petrolina");
         grafo.addAresta(395.9, "Petrolina", "Feira de Santana");
-        grafo.addAresta(395.9, "Teresina", "São Luís");
-        grafo.addAresta(395.9, "São Luís", "Teresina");
-        grafo.addAresta(395.9, "Teresina", "Juazeiro do Norte");
-        grafo.addAresta(395.9, "Juazeiro do Norte", "Teresina");
+        grafo.addAresta(440.6, "Teresina", "São Luís");
+        grafo.addAresta(440.6, "São Luís", "Teresina");
+        grafo.addAresta(584.8, "Teresina", "Juazeiro do Norte");
+        grafo.addAresta(584.8, "Juazeiro do Norte", "Teresina");
 
-
+        grafo.buscaLargura();
     }
 }

@@ -38,4 +38,25 @@ public class Grafos<TIPO>{
         }
         return vertice;
     }
+
+    public void buscaLargura(){
+        ArrayList<Vertice<TIPO>> marcado = new ArrayList<Vertice<TIPO>>();
+        ArrayList<Vertice<TIPO>> fila = new ArrayList<Vertice<TIPO>>();
+        Vertice<TIPO> atual = this.verticesG.get(0);
+        marcado.add(atual);
+        System.out.println(atual.getDado());
+        fila.add(atual);
+        while(fila.size() > 0){
+            Vertice<TIPO> visitado = fila.get(0);
+            for(int i = 0; i < visitado.getArestaSaida().size(); i++){
+                Vertice<TIPO> proximo = visitado.getArestaSaida().get(i).getFim();
+                if(!marcado.contains(proximo)){
+                    marcado.add(proximo);
+                    System.out.println(proximo.getDado());
+                    fila.add(proximo);
+                }
+            }
+            fila.remove(0);
+        }
+    }
 }
