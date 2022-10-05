@@ -1,16 +1,19 @@
 package EmpFrete;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
         Grafos<String> grafo = new Grafos<String>();
 
+        Scanner scanIndex = new Scanner(System.in);
+
         //Cidades com sede da Empresa
-        grafo.addVertice("Recife");
-        grafo.addVertice("Fortaleza");
-        grafo.addVertice("Salvador");
-        grafo.addVertice("João Pessoa");
-        grafo.addVertice("Maceió");
+        grafo.addVertice("Recife"); //1
+        grafo.addVertice("Fortaleza"); //2
+        grafo.addVertice("Salvador"); //3
+        grafo.addVertice("João Pessoa"); //4
+        grafo.addVertice("Maceió"); //5
         //Cidades sem sede da Empresa
         grafo.addVertice("Teresina");
         grafo.addVertice("Aracaju");
@@ -29,8 +32,6 @@ public class Main {
         grafo.addAresta(257.1, "Recife", "Maceió");
         grafo.addAresta(200.6, "Recife", "Campina Grande");
         grafo.addAresta(200.6, "Campina Grande", "Recife");
-        grafo.addAresta(712.0, "Recife", "Petrolina");
-        grafo.addAresta(712.0, "Petrolina", "Recife");
         grafo.addAresta(599.5, "Maceió", "Salvador");
         grafo.addAresta(257.1, "Maceió", "Recife");
         grafo.addAresta(128.9, "Maceió", "Arapiraca");
@@ -82,6 +83,8 @@ public class Main {
         grafo.addAresta(584.8, "Teresina", "Juazeiro do Norte");
         grafo.addAresta(584.8, "Juazeiro do Norte", "Teresina");
 
-        grafo.buscaLargura();
+        System.out.println("Digite o Número da cidade que você quer começar: (Recife: 0, Fortaleza: 1, Salvador: 2, João Pessoa: 3, Maceió: 4)");
+        int index = scanIndex.nextInt();
+        grafo.buscaLargura(index);
     }
 }
