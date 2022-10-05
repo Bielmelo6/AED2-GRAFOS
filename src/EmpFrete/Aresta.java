@@ -1,10 +1,11 @@
 package EmpFrete;
 
+import java.util.*;
 public class Aresta<TIPO> {
 
-    private Double distancia;
-    private Vertice<TIPO> inicio;
-    private Vertice<TIPO> fim;
+    public Double distancia;
+    public Vertice<TIPO> inicio;
+    public Vertice<TIPO> fim;
 
     public Aresta(Double distancia, Vertice<TIPO> inicio, Vertice<TIPO> fim) {
         this.distancia = distancia;

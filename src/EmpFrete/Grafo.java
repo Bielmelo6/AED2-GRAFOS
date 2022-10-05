@@ -1,13 +1,13 @@
 package EmpFrete;
 
-import java.util.ArrayList;
+import java.util.*;
 
-public class Grafos<TIPO>{
+public class Grafo<TIPO>{
 
-    private final ArrayList<Aresta<TIPO>> arestasG;
-    private final ArrayList<Vertice<TIPO>> verticesG;
+    public final ArrayList<Aresta<TIPO>> arestasG;
+    public final ArrayList<Vertice<TIPO>> verticesG;
 
-    public Grafos() {
+    public Grafo() {
         this.arestasG = new ArrayList<Aresta<TIPO>>();
         this.verticesG = new ArrayList<Vertice<TIPO>>();
     }
@@ -25,6 +25,7 @@ public class Grafos<TIPO>{
             inicio.addArestaSaida(aresta);
             fim.addArestaEntrada(aresta);
             this.arestasG.add(aresta);
+            inicio.vizinhos.add(aresta);
         }
     }
 
@@ -39,10 +40,14 @@ public class Grafos<TIPO>{
         return vertice;
     }
 
-    public void buscaLargura(int index){
+    public ArrayList<Vertice<TIPO>> getVerticesG(){
+        return this.verticesG;
+    }
+
+    public void buscaLargura(/*int index*/){
         ArrayList<Vertice<TIPO>> marcado = new ArrayList<Vertice<TIPO>>();
         ArrayList<Vertice<TIPO>> fila = new ArrayList<Vertice<TIPO>>();
-        Vertice<TIPO> atual = this.verticesG.get(index);
+        Vertice<TIPO> atual = this.verticesG.get(/*index*/0);
         marcado.add(atual);
         System.out.println(atual.getDado());
         fila.add(atual);
@@ -60,3 +65,5 @@ public class Grafos<TIPO>{
         }
     }
 }
+
+

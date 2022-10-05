@@ -1,19 +1,22 @@
 package EmpFrete;
 import java.util.Scanner;
 
-public class Main {
+public class Main<TIPO>{
 
     public static void main(String[] args) {
-        Grafos<String> grafo = new Grafos<String>();
+
+        Dijkstra<String> obj = new Dijkstra<String>();
+
+        Grafo<String> grafo = new Grafo<>();
 
         Scanner scanIndex = new Scanner(System.in);
 
         //Cidades com sede da Empresa
-        grafo.addVertice("Recife"); //1
-        grafo.addVertice("Fortaleza"); //2
-        grafo.addVertice("Salvador"); //3
-        grafo.addVertice("João Pessoa"); //4
-        grafo.addVertice("Maceió"); //5
+        grafo.addVertice("Recife"); //0
+        grafo.addVertice("Fortaleza"); //1
+        grafo.addVertice("Salvador"); //2
+        grafo.addVertice("João Pessoa"); //3
+        grafo.addVertice("Maceió"); //4
         //Cidades sem sede da Empresa
         grafo.addVertice("Teresina");
         grafo.addVertice("Aracaju");
@@ -83,8 +86,19 @@ public class Main {
         grafo.addAresta(584.8, "Teresina", "Juazeiro do Norte");
         grafo.addAresta(584.8, "Juazeiro do Norte", "Teresina");
 
-        System.out.println("Digite o Número da cidade que você quer começar: (Recife: 0, Fortaleza: 1, Salvador: 2, João Pessoa: 3, Maceió: 4)");
-        int index = scanIndex.nextInt();
-        grafo.buscaLargura(index);
+        //System.out.println("Digite o Número da cidade que você quer começar: (Recife: 0, Fortaleza: 1, Salvador: 2, João Pessoa: 3, Maceió: 4)");
+        //int index = scanIndex.nextInt();
+        //grafo.buscaLargura();
+
+        obj.calculo(grafo.getVertice("Salvador"));
+
+        System.out.println("PARTINDO DE Salvador");
+        for(Vertice<String> v:grafo.getVerticesG()){
+            System.out.println("Destino -" + v.getDado() + " , Distância Mínima - " + v.distanciaMin + " , Caminho - [");
+            for(Vertice<String> caminhoV:v.caminho){
+                System.out.println(caminhoV.getDado() + " ");
+            }
+            System.out.println(" " + v.getDado() + " ]");
+        }
     }
 }

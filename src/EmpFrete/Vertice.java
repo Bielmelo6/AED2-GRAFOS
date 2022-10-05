@@ -1,17 +1,25 @@
 package EmpFrete;
 
-import java.util.ArrayList;
+import java.util.*;
 
-public class Vertice<TIPO>{
+public class Vertice<TIPO> implements Comparable<Vertice<TIPO>>{
 
-    private TIPO dado;
-    private ArrayList<Aresta<TIPO>> arestaEntrada;
-    private ArrayList<Aresta<TIPO>> arestaSaida;
+    public TIPO dado;
+    public ArrayList<Aresta<TIPO>> arestaEntrada;
+    public ArrayList<Aresta<TIPO>> arestaSaida;
+    public final ArrayList<Aresta<TIPO>> vizinhos;
 
+    public LinkedList<Vertice<TIPO>> caminho;
+    public Double distanciaMin = Double.POSITIVE_INFINITY;
+    public int compareTo(Vertice<TIPO> outro){
+        return Double.compare(distanciaMin, outro.distanciaMin);
+    }
     public Vertice(TIPO valor){
         this.dado = valor;
         this.arestaEntrada = new ArrayList<Aresta<TIPO>>();
         this.arestaSaida = new ArrayList<Aresta<TIPO>>();
+        vizinhos = new ArrayList<Aresta<TIPO>>();
+        caminho = new LinkedList<Vertice<TIPO>>();
     }
 
     public TIPO getDado() {
@@ -44,5 +52,9 @@ public class Vertice<TIPO>{
 
     public void addArestaSaida(Aresta<TIPO> aresta){
         this.arestaSaida.add(aresta);
+    }
+
+    public ArrayList<Aresta<TIPO>> getVizinhos() {
+        return vizinhos;
     }
 }
