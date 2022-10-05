@@ -9,9 +9,6 @@ public class Main<TIPO>{
 
         Grafo<String> grafo = new Grafo<>();
 
-        Scanner scanCidade = new Scanner(System.in);
-        Scanner scanIndex = new Scanner(System.in);
-
         //Cidades com sede da Empresa
         grafo.addVertice("Recife"); //0
         grafo.addVertice("Fortaleza"); //1
@@ -89,6 +86,9 @@ public class Main<TIPO>{
 
         boolean condicao = true;
         Scanner scanInt = new Scanner(System.in);
+        Scanner scanCidade = new Scanner(System.in);
+        Scanner scanIndex = new Scanner(System.in);
+
 
         while (condicao){
             System.out.println("\nDIGITE A AÇÃO: \n1 BUSCA EM LARGURA \n2 CAMINHOS MAIS CURTOS \n99 ENCERRAR O PROGRAMA");
@@ -102,16 +102,19 @@ public class Main<TIPO>{
                     grafo.buscaLargura(index);
                 }
                 case 2 -> {
-                    System.out.println("Qual cidade você gostaria que fosse o ponto de partida?");
+                    System.out.println("Qual cidade é o ponto de partida?");
                     String cidade = scanCidade.nextLine();
-                    System.out.println("PARTINDO DE: " + cidade);
                     obj.menorCaminho(grafo.getVertice(cidade));
+                    System.out.println("Destino desejado: ");
+                    String dest = scanCidade.nextLine();
                     for(Vertice<String> v:grafo.getVerticesG()){
-                        System.out.println("Destino - " + v.getDado() + " , Distância Mínima - " + v.distanciaMin + " , Caminho - \n[");
-                        for(Vertice<String> caminhoV:v.caminho){
-                            System.out.println(caminhoV.getDado() + " ");
+                        if(v.getDado().equals(dest)){
+                            System.out.println("Destino - " + v.getDado() + " , Distância Mínima - " + v.distanciaMin + " , Caminho - \n[");
+                            for (Vertice<String> caminhoV : v.caminho) {
+                                System.out.println(caminhoV.getDado() + " ");
+                            }
+                            System.out.println("" + v.getDado() + "\n]");
                         }
-                        System.out.println("" + v.getDado() + "\n]");
                     }
                 }
                 case 99 -> {
