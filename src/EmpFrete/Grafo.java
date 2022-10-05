@@ -42,7 +42,7 @@ public class Grafo<TIPO>{
 
     public Aresta<TIPO> getAresta(Vertice<TIPO> inicio, Vertice<TIPO> fim){
         Aresta<TIPO> aresta = null;
-        for(int i = 0; i < this.verticesG.size(); i++){
+        for(int i = 0; i < this.arestasG.size(); i++){
             if(this.arestasG.get(i).getInicio().equals(inicio) && this.arestasG.get(i).getFim().equals(fim)){
                 aresta = this.arestasG.get(i);
                 break;

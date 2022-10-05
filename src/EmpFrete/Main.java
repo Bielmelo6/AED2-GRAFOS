@@ -44,7 +44,6 @@ public class Main<TIPO>{
         grafo.addAresta(126.8, "Campina Grande", "João Pessoa");
         grafo.addAresta(181.0, "João Pessoa", "Natal");
         grafo.addAresta(181.0, "Natal", "João Pessoa");
-        grafo.addAresta(670.7, "João Pessoa", "Fortaleza");
         grafo.addAresta(117.1, "João Pessoa", "Recife");
         grafo.addAresta(241.0, "João Pessoa", "Caruaru");
         grafo.addAresta(241.0, "Caruaru", "João Pessoa");
@@ -62,7 +61,6 @@ public class Main<TIPO>{
         grafo.addAresta(634.2, "Teresina", "Fortaleza");
         grafo.addAresta(536.1, "Fortaleza", "Natal");
         grafo.addAresta(536.1, "Natal", "Fortaleza");
-        grafo.addAresta(670.7, "Fortaleza", "João Pessoa");
         grafo.addAresta(144.4, "Caruaru", "Campina Grande");
         grafo.addAresta(144.4, "Campina Grande", "Caruaru");
         grafo.addAresta(221.6, "Caruaru", "Arapiraca");
@@ -89,8 +87,7 @@ public class Main<TIPO>{
         Scanner scanIndex = new Scanner(System.in);
 
 
-        while (condicao){
-            System.out.println("\nDIGITE A AÇÃO: \n1 BUSCA EM LARGURA \n2 CAMINHOS MAIS CURTOS \n3 DISTÂNCIA DE DETERMINADA ARESTA \n99 ENCERRAR O PROGRAMA");
+            System.out.println("\nDIGITE A AÇÃO: \n1 BUSCA EM LARGURA \n2 CAMINHOS MAIS CURTOS \n3 DISTÂNCIA DE DETERMINADA ARESTA");
 
             int acao = scanInt.nextInt();
 
@@ -103,9 +100,9 @@ public class Main<TIPO>{
                 case 2 -> {
                     System.out.println("Qual cidade é o ponto de partida?");
                     String cidade = scanCidade.nextLine();
-                    obj.menorCaminho(grafo.getVertice(cidade));
+                    obj.menorCaminho(grafo.getVertice(grafo.getVertice(cidade).getDado()));
                     System.out.println("Destino desejado: ");
-                    String dest = scanCidade.nextLine();
+                    String dest = scanDestino.nextLine();
                     for(Vertice<String> rota:grafo.getVerticesG()){
                         if(rota.getDado().equals(dest)){
                             System.out.println("Destino - " + rota.getDado() + " , Distância Mínima - " + rota.distanciaMin + "\nCaminho - [");
@@ -129,16 +126,6 @@ public class Main<TIPO>{
                         System.out.println("A distância entre " + verticeI + " e " + verticeF + " é de: " + grafo.getAresta(grafo.getVertice(verticeI), grafo.getVertice(verticeF)).getDistancia() + " Km");
                     }
                 }
-                case 99 -> {
-                    condicao = false;
-                }
             }
         }
-
-
-
-
-
-
     }
-}
