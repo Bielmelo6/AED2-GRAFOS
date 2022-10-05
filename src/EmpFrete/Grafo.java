@@ -40,10 +40,24 @@ public class Grafo<TIPO>{
         return vertice;
     }
 
+    public Aresta<TIPO> getAresta(Vertice<TIPO> inicio, Vertice<TIPO> fim){
+        Aresta<TIPO> aresta = null;
+        for(int i = 0; i < this.verticesG.size(); i++){
+            if(this.arestasG.get(i).getInicio().equals(inicio) && this.arestasG.get(i).getFim().equals(fim)){
+                aresta = this.arestasG.get(i);
+                break;
+            }
+        }
+        return aresta;
+    }
+
     public ArrayList<Vertice<TIPO>> getVerticesG(){
         return this.verticesG;
     }
 
+    public ArrayList<Aresta<TIPO>> getArestasG(){
+        return this.arestasG;
+    }
     public void buscaLargura(int index){
         ArrayList<Vertice<TIPO>> marcado = new ArrayList<Vertice<TIPO>>();
         ArrayList<Vertice<TIPO>> fila = new ArrayList<Vertice<TIPO>>();

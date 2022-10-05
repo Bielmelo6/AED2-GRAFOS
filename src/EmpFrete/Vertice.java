@@ -8,7 +8,6 @@ public class Vertice<TIPO> implements Comparable<Vertice<TIPO>>{
     public ArrayList<Aresta<TIPO>> arestaEntrada;
     public ArrayList<Aresta<TIPO>> arestaSaida;
     public final ArrayList<Aresta<TIPO>> vizinhos;
-
     public LinkedList<Vertice<TIPO>> caminho;
     public Double distanciaMin = Double.POSITIVE_INFINITY;
     public int compareTo(Vertice<TIPO> outro){

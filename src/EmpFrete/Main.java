@@ -33,7 +33,6 @@ public class Main<TIPO>{
         grafo.addAresta(257.1, "Recife", "Maceió");
         grafo.addAresta(200.6, "Recife", "Campina Grande");
         grafo.addAresta(200.6, "Campina Grande", "Recife");
-        grafo.addAresta(599.5, "Maceió", "Salvador");
         grafo.addAresta(257.1, "Maceió", "Recife");
         grafo.addAresta(128.9, "Maceió", "Arapiraca");
         grafo.addAresta(128.9, "Arapiraca", "Maceió");
@@ -49,7 +48,6 @@ public class Main<TIPO>{
         grafo.addAresta(117.1, "João Pessoa", "Recife");
         grafo.addAresta(241.0, "João Pessoa", "Caruaru");
         grafo.addAresta(241.0, "Caruaru", "João Pessoa");
-        grafo.addAresta(599.5, "Salvador", "Maceió");
         grafo.addAresta(115.5, "Salvador", "Feira de Santana");
         grafo.addAresta(115.5, "Feira de Santana", "Salvador");
         grafo.addAresta(323.4, "Salvador", "Aracaju");
@@ -87,11 +85,12 @@ public class Main<TIPO>{
         boolean condicao = true;
         Scanner scanInt = new Scanner(System.in);
         Scanner scanCidade = new Scanner(System.in);
+        Scanner scanDestino = new Scanner(System.in);
         Scanner scanIndex = new Scanner(System.in);
 
 
         while (condicao){
-            System.out.println("\nDIGITE A AÇÃO: \n1 BUSCA EM LARGURA \n2 CAMINHOS MAIS CURTOS \n99 ENCERRAR O PROGRAMA");
+            System.out.println("\nDIGITE A AÇÃO: \n1 BUSCA EM LARGURA \n2 CAMINHOS MAIS CURTOS \n3 DISTÂNCIA DE DETERMINADA ARESTA \n99 ENCERRAR O PROGRAMA");
 
             int acao = scanInt.nextInt();
 
@@ -107,14 +106,27 @@ public class Main<TIPO>{
                     obj.menorCaminho(grafo.getVertice(cidade));
                     System.out.println("Destino desejado: ");
                     String dest = scanCidade.nextLine();
-                    for(Vertice<String> v:grafo.getVerticesG()){
-                        if(v.getDado().equals(dest)){
-                            System.out.println("Destino - " + v.getDado() + " , Distância Mínima - " + v.distanciaMin + " , Caminho - \n[");
-                            for (Vertice<String> caminhoV : v.caminho) {
+                    for(Vertice<String> rota:grafo.getVerticesG()){
+                        if(rota.getDado().equals(dest)){
+                            System.out.println("Destino - " + rota.getDado() + " , Distância Mínima - " + rota.distanciaMin + "\nCaminho - [");
+                            for (Vertice<String> caminhoV : rota.caminho) {
                                 System.out.println(caminhoV.getDado() + " ");
                             }
-                            System.out.println("" + v.getDado() + "\n]");
+                            System.out.println("" + rota.getDado() + "\n]");
                         }
+                    }
+                }
+                case 3 -> {
+                    System.out.println("Você gostaria de ver a distância(em Km) de que aresta?");
+                    System.out.println("Início: ");
+                    String verticeI = scanCidade.nextLine();
+                    System.out.println("Destino: ");
+                    String verticeF = scanDestino.nextLine();
+                    if(grafo.getAresta(grafo.getVertice(verticeI), grafo.getVertice(verticeF)) == null) {
+                        System.out.println("Essa aresta não existe!");
+                    }
+                    else{
+                        System.out.println("A distância entre " + verticeI + " e " + verticeF + " é de: " + grafo.getAresta(grafo.getVertice(verticeI), grafo.getVertice(verticeF)).getDistancia() + " Km");
                     }
                 }
                 case 99 -> {
