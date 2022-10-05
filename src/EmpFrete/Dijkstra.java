@@ -4,12 +4,11 @@ import java.util.*;
 
 public class Dijkstra<TIPO> {
 
-    public void calculo(Vertice<TIPO> inicio) {
-        // Algo:
-        // 1. Take the unvisited node with minimum weight.
-        // 2. Visit all its neighbours.
-        // 3. Update the distances for all the neighbours (In the Priority Queue).
-        // Repeat the process till all the connected nodes are visited.
+    public void menorCaminho(Vertice<TIPO> inicio) {
+        // 1. Guarde o nó que ainda não foi visitado com a distância mínima.
+        // 2. Visite todos os vizinhos.
+        // 3. Atualize todas das distâncias dos vizinhos(Na fila de prioridade)
+        // Repita o processo até que todos os nós sejam visitados.
 
         inicio.distanciaMin = 0.0;
         PriorityQueue<Vertice<TIPO>> fila = new PriorityQueue<Vertice<TIPO>>();
@@ -17,21 +16,21 @@ public class Dijkstra<TIPO> {
 
         while (!fila.isEmpty()) {
 
-            Vertice<TIPO> u = fila.poll();
+            Vertice<TIPO> temp = fila.poll();
 
-            for (Aresta<TIPO> vizinho : u.vizinhos) {
-                Double newDist = u.distanciaMin + vizinho.distancia;
+            for (Aresta<TIPO> vizinho : temp.vizinhos) {
+                Double novaDist = temp.distanciaMin + vizinho.distancia;
 
-                if (vizinho.fim.distanciaMin > newDist) {
-                    // Remove the node from the queue to update the distance value.
+                if (vizinho.fim.distanciaMin > novaDist) {
+                    // Remove o valor da fila para atualizar a distância.
                     fila.remove(vizinho.fim);
-                    vizinho.fim.distanciaMin = newDist;
+                    vizinho.fim.distanciaMin = novaDist;
 
-                    // Take the path visited till now and add the new node.s
-                    vizinho.fim.caminho = new LinkedList<Vertice<TIPO>>(u.caminho);
-                    vizinho.fim.caminho.add(u);
+                    // Pegue o caminho visitado até agora e adicione o vértice.
+                    vizinho.fim.caminho = new LinkedList<Vertice<TIPO>>(temp.caminho);
+                    vizinho.fim.caminho.add(temp);
 
-                    //Reenter the node with new distance.
+                    //Reinsira o vértice com a nova distância.
                     fila.add(vizinho.fim);
                 }
             }

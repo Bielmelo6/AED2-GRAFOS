@@ -9,6 +9,7 @@ public class Main<TIPO>{
 
         Grafo<String> grafo = new Grafo<>();
 
+        Scanner scanCidade = new Scanner(System.in);
         Scanner scanIndex = new Scanner(System.in);
 
         //Cidades com sede da Empresa
@@ -18,16 +19,16 @@ public class Main<TIPO>{
         grafo.addVertice("João Pessoa"); //3
         grafo.addVertice("Maceió"); //4
         //Cidades sem sede da Empresa
-        grafo.addVertice("Teresina");
-        grafo.addVertice("Aracaju");
-        grafo.addVertice("Natal");
-        grafo.addVertice("São Luís");
-        grafo.addVertice("Feira de Santana");
-        grafo.addVertice("Campina Grande");
-        grafo.addVertice("Caruaru");
-        grafo.addVertice("Juazeiro do Norte");
-        grafo.addVertice("Arapiraca");
-        grafo.addVertice("Petrolina");
+        grafo.addVertice("Teresina"); //5
+        grafo.addVertice("Aracaju"); //6
+        grafo.addVertice("Natal"); //7
+        grafo.addVertice("São Luís"); //8
+        grafo.addVertice("Feira de Santana"); //9
+        grafo.addVertice("Campina Grande"); //10
+        grafo.addVertice("Caruaru"); //11
+        grafo.addVertice("Juazeiro do Norte"); //12
+        grafo.addVertice("Arapiraca"); //13
+        grafo.addVertice("Petrolina"); //14
 
         grafo.addAresta(133.2, "Recife", "Caruaru");
         grafo.addAresta(133.2, "Caruaru", "Recife");
@@ -86,19 +87,43 @@ public class Main<TIPO>{
         grafo.addAresta(584.8, "Teresina", "Juazeiro do Norte");
         grafo.addAresta(584.8, "Juazeiro do Norte", "Teresina");
 
-        //System.out.println("Digite o Número da cidade que você quer começar: (Recife: 0, Fortaleza: 1, Salvador: 2, João Pessoa: 3, Maceió: 4)");
-        //int index = scanIndex.nextInt();
-        //grafo.buscaLargura();
+        boolean condicao = true;
+        Scanner scanInt = new Scanner(System.in);
 
-        obj.calculo(grafo.getVertice("Salvador"));
+        while (condicao){
+            System.out.println("\nDIGITE A AÇÃO: \n1 BUSCA EM LARGURA \n2 CAMINHOS MAIS CURTOS \n99 ENCERRAR O PROGRAMA");
 
-        System.out.println("PARTINDO DE Salvador");
-        for(Vertice<String> v:grafo.getVerticesG()){
-            System.out.println("Destino -" + v.getDado() + " , Distância Mínima - " + v.distanciaMin + " , Caminho - [");
-            for(Vertice<String> caminhoV:v.caminho){
-                System.out.println(caminhoV.getDado() + " ");
+            int acao = scanInt.nextInt();
+
+            switch (acao){
+                case 1 -> {
+                    System.out.println("Digite o Número da cidade que você quer começar: \nRecife: 0\nFortaleza: 1\nSalvador: 2\nJoão Pessoa: 3\nMaceió: 4\nTeresina: 5\nAracaju: 6\nNatal: 7\nSão Luís: 8\nFeira de Santana: 9\nCampina Grande: 10\nCaruaru: 11\nJuazeiro do Norte: 12\nArapiraca: 13\nPetrolina: 14");
+                    int index = scanIndex.nextInt();
+                    grafo.buscaLargura(index);
+                }
+                case 2 -> {
+                    System.out.println("Qual cidade você gostaria que fosse o ponto de partida?");
+                    String cidade = scanCidade.nextLine();
+                    System.out.println("PARTINDO DE: " + cidade);
+                    obj.menorCaminho(grafo.getVertice(cidade));
+                    for(Vertice<String> v:grafo.getVerticesG()){
+                        System.out.println("Destino - " + v.getDado() + " , Distância Mínima - " + v.distanciaMin + " , Caminho - \n[");
+                        for(Vertice<String> caminhoV:v.caminho){
+                            System.out.println(caminhoV.getDado() + " ");
+                        }
+                        System.out.println("" + v.getDado() + "\n]");
+                    }
+                }
+                case 99 -> {
+                    condicao = false;
+                }
             }
-            System.out.println(" " + v.getDado() + " ]");
         }
+
+
+
+
+
+
     }
 }

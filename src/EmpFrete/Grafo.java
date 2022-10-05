@@ -44,10 +44,10 @@ public class Grafo<TIPO>{
         return this.verticesG;
     }
 
-    public void buscaLargura(/*int index*/){
+    public void buscaLargura(int index){
         ArrayList<Vertice<TIPO>> marcado = new ArrayList<Vertice<TIPO>>();
         ArrayList<Vertice<TIPO>> fila = new ArrayList<Vertice<TIPO>>();
-        Vertice<TIPO> atual = this.verticesG.get(/*index*/0);
+        Vertice<TIPO> atual = this.verticesG.get(index);
         marcado.add(atual);
         System.out.println(atual.getDado());
         fila.add(atual);
