@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Dijkstra<TIPO> {
 
+
     public void menorCaminho(Vertice<TIPO> inicio) {
         // 1. Guarde o nó que ainda não foi visitado com a distância mínima.
         // 2. Visite todos os vizinhos.
