@@ -79,16 +79,15 @@ public class Main<TIPO>{
         grafo.addAresta(584.8, "Teresina", "Juazeiro do Norte");
         grafo.addAresta(584.8, "Juazeiro do Norte", "Teresina");
 
-        boolean condicao = true;
+
+        Dijkstra<String> obj = new Dijkstra<String>();
         Scanner scanInt = new Scanner(System.in);
         Scanner scanCidade = new Scanner(System.in);
         Scanner scanDestino = new Scanner(System.in);
         Scanner scanIndex = new Scanner(System.in);
 
 
-        while (condicao) {
-
-            System.out.println("\nDIGITE A AÇÃO: \n1 BUSCA EM LARGURA \n2 ROTA MAIS CURTA ENTRE DUAS CIDADES \n3 TODAS AS ROTAS MAIS CURTAS PARTINDO DA CIDADE \n4 DISTÂNCIA DE DETERMINADA ARESTA \n99 FINALIZAR PROGRAMA");
+        System.out.println("\nDIGITE A AÇÃO: \n1 BUSCA EM LARGURA \n2 ROTA MAIS CURTA ENTRE DUAS CIDADES \n3 TODAS AS ROTAS MAIS CURTAS PARTINDO DA CIDADE \n4 DISTÂNCIA DE DETERMINADA ARESTA \n99 FINALIZAR PROGRAMA");
 
         int acao = scanInt.nextInt();
 
@@ -99,7 +98,6 @@ public class Main<TIPO>{
                 grafo.buscaLargura(index);
             }
             case 2 -> {
-                Dijkstra<String> obj = new Dijkstra<String>();
                 System.out.println("Qual cidade é o ponto de partida?");
                 String cidade = scanCidade.nextLine();
                 obj.menorCaminho(grafo.getVertice(grafo.getVertice(cidade).getDado()));
@@ -116,7 +114,6 @@ public class Main<TIPO>{
                 }
             }
             case 3 -> {
-                Dijkstra<String> obj = new Dijkstra<String>();
                 System.out.println("Você quer ver os caminhos de partindo de que cidade?");
                 String cidade2 = scanCidade.nextLine();
                 obj.menorCaminho(grafo.getVertice(grafo.getVertice(cidade2).getDado()));
@@ -140,8 +137,6 @@ public class Main<TIPO>{
                     System.out.println("A distância entre " + verticeI + " e " + verticeF + " é de: " + grafo.getAresta(grafo.getVertice(verticeI), grafo.getVertice(verticeF)).getDistancia() + " Km");
                 }
             }
-            case 99 -> condicao = false;
         }
-    }
     }
 }
